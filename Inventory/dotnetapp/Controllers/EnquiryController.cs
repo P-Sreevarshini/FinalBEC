@@ -20,7 +20,7 @@ namespace dotnetapp.Controllers
         {
             _enquiryService = enquiryService;
         }
-//  [Authorize(Roles="Admin,Student")]
+ [Authorize(Roles="Admin,Student")]
 
         [HttpGet]
         public async Task<IActionResult> GetAllEnquiries()
@@ -28,7 +28,7 @@ namespace dotnetapp.Controllers
             var enquiries = await _enquiryService.GetAllEnquiries();
             return Ok(enquiries);
         }
-// [Authorize(Roles="Admin,Student")]
+[Authorize(Roles="Admin,Student")]
 
         [HttpGet("{EnquiryID}")]
         public async Task<IActionResult> GetEnquiryById(int EnquiryID)
@@ -41,7 +41,7 @@ namespace dotnetapp.Controllers
             return Ok(enquiry);
         }
 
-    // [Authorize(Roles="Student")]
+    [Authorize(Roles="Student")]
     [HttpPost]
     public async Task<IActionResult> CreateEnquiry(Enquiry enquiry)
     {
@@ -95,6 +95,8 @@ namespace dotnetapp.Controllers
 
         //     return NoContent();
         // }
+[Authorize(Roles="Student")]
+
 [HttpPut("{EnquiryID}")]
 public async Task<IActionResult> UpdateEnquiry(int EnquiryID, Enquiry enquiry)
 {
@@ -124,7 +126,7 @@ public async Task<IActionResult> UpdateEnquiry(int EnquiryID, Enquiry enquiry)
     }
 }
 
-        // [Authorize(Roles="Student")]
+        [Authorize(Roles="Student,Admin")]
 
        [HttpDelete("{EnquiryID}")]
         public async Task<IActionResult> DeleteEnquiry(int EnquiryID)
